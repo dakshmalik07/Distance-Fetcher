@@ -19,5 +19,5 @@ public class Pincode {
     @Column(columnDefinition = "TEXT")
     private String polygon;
 
-    // Constructors, Getters, Setters
+
 }

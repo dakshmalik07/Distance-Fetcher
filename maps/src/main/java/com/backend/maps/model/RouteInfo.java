@@ -20,5 +20,5 @@ public class RouteInfo {
     @Column(columnDefinition = "TEXT")
     private String routeDetails;
 
-    // Constructors, Getters, Setters
+
 }
