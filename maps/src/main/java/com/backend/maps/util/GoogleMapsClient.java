@@ -23,13 +23,13 @@ public class GoogleMapsClient {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
-        // Log the full response
+      
         System.out.println("API Response: " + response.getBody());
 
-        // Parse JSON response
+        
         JSONObject jsonResponse = new JSONObject(response.getBody());
 
-        // Check if "rows" is present and has data
+      
         if (!jsonResponse.has("rows") || jsonResponse.getJSONArray("rows").length() == 0) {
             throw new JSONException("No routes found in the response.");
         }
@@ -40,7 +40,7 @@ public class GoogleMapsClient {
         String distance = elements.getJSONObject("distance").getString("text");
         String duration = elements.getJSONObject("duration").getString("text");
 
-        // Storing the full route details as JSON string in routeDetails
+       
         String routeDetails = elements.toString();
 
         return new RouteInfo(null, fromPincode, toPincode, distance, duration, routeDetails);
