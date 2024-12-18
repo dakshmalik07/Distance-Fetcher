@@ -24,13 +24,10 @@ public class GoogleMapsClient {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
-        // Log the full response
         System.out.println("API Response: " + response.getBody());
 
-        // Parse JSON response
         JSONObject jsonResponse = new JSONObject(response.getBody());
 
-        // Check if "rows" is present and has data
         if (!jsonResponse.has("rows") || jsonResponse.getJSONArray("rows").length() == 0) {
             throw new JSONException("No routes found in the response.");
         }

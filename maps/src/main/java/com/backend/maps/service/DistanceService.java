@@ -18,14 +18,14 @@ public class DistanceService {
     private GoogleMapsClient googleMapsClient;
 
     public RouteInfo getDistance(String fromPincode, String toPincode) {
-        // Check if data is already in the database
+       
         Optional<RouteInfo> routeInfoOpt = routeInfoRepository.findByFromPincodeAndToPincode(fromPincode, toPincode);
 
         if (routeInfoOpt.isPresent()) {
             return routeInfoOpt.get();
         }
 
-        // If data is not found, call the Google Maps API
+      
         RouteInfo routeInfo = googleMapsClient.fetchDistanceData(fromPincode, toPincode);
         routeInfoRepository.save(routeInfo);
 
