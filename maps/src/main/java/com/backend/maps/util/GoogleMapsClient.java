@@ -1,4 +1,5 @@
 package com.backend.maps.util;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,10 +41,16 @@ public class GoogleMapsClient {
         String distance = elements.getJSONObject("distance").getString("text");
         String duration = elements.getJSONObject("duration").getString("text");
 
+        // Extract addresses from the API response
+        JSONArray originAddresses = jsonResponse.getJSONArray("origin_addresses");
+        JSONArray destinationAddresses = jsonResponse.getJSONArray("destination_addresses");
+
+        String originAddress = originAddresses.length() > 0 ? originAddresses.getString(0) : "Unknown Origin";
+        String destinationAddress = destinationAddresses.length() > 0 ? destinationAddresses.getString(0) : "Unknown Destination";
+
         // Storing the full route details as JSON string in routeDetails
         String routeDetails = elements.toString();
 
-        return new RouteInfo(null, fromPincode, toPincode, distance, duration, routeDetails);
+        return new RouteInfo(null, fromPincode, toPincode, distance, duration, routeDetails, originAddress, destinationAddress);
     }
-
 }

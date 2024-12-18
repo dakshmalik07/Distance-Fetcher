@@ -19,6 +19,6 @@ public class RouteInfo {
     private String duration;
     @Column(columnDefinition = "TEXT")
     private String routeDetails;
-
-
+    private String originAddress;  // Added field for origin address
+    private String destinationAddress;  // Added field for destination address
 }
